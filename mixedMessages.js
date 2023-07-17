@@ -1,22 +1,28 @@
-//const character = promt('The name of whom you desire to know the future of, give to me');
-const consecuences = {
-    goodConsecuences: [
-        'succeed', 'celebrate', 'grow', 'achieve', 'learn', 'win', 'thrive', 'advance', 'flourish',
-        'prosper', 'inspire', 'empower', 'create', 'satisfy', 'progress', 'fulfill', 'rejoice', 'blossom',
-        'contribute', 'excel', 'surpass', 'triumph', 'enrich', 'uplift', 'transform'
+const readline = require('readline');
+const consequences = {
+    goodConsequences: [
+        "energized", "accomplished", "refreshed", "knowledgeable", "creative", "harmonious",
+        "expressive", "joyful", "nourished", "rested", "inspired", "productive", "colorful",
+        "communicative", "attentive", "emotional", "adventurous", "satisfied", "focused",
+        "innovative", "transformed", "connected", "educated", "curious", "grateful", "elevated"
       ],
-    badConsecuences: [
-        'fail', 'lose', 'crash', 'fall', 'break', 'miss', 'regret', 'disappoint', 'delay',
-        'forget', 'hurt', 'waste', 'struggle', 'ruin', 'betray', 'suffer', 'stumble', 'reject',
-        'panic', 'falter', 'stall', 'lament', 'fumble', 'procrastinate', 'flounder', 'misplace'
+    
+      badConsequences: [
+        "exhausted", "hurt", "drowning", "confused", "frustrated", "out of tune",
+        "awkward", "injured", "unfulfilled", "restless", "blocked", "disconnected",
+        "disappointed", "misunderstood", "stifled", "overwhelmed", "unbalanced",
+        "trapped", "isolated", "uninspired", "stagnant", "disoriented", "unfocused",
+        "stressed", "discouraged", "wasted"
       ]
 }
 const time = () => {
     let time = Math.floor(Math.random() * 3650) + 1;
     if (time < 365) {
-        return time
-    } else if (time >= 365) {
-        return Math.floor(time/365);
+        return `${time} days`
+    } else if (time >= 730) {
+        return `${Math.floor(time/365)} years`;
+    } else if (time == 365) {
+        return `${time} year`
     }
 }
 const verb = () => {
@@ -30,9 +36,25 @@ const verb = () => {
       ];
     return verbs[Math.floor(Math.random()*50)+1];
 }
-
 const destiny = () => {
-    
+    let num = Math.floor(Math.random()*2) + 1;
+    if (num = 1) {
+        return consequences.goodConsequences[Math.floor(Math.random()*25)+1];
+    } else if (num = 2) {
+        return consequences.badConsequences[Math.floor(Math.random()*25)+1]
+    }
 }
 
+function yourFuture() {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
 
+  rl.question('The name of whom you desire to know the future of, to me your name you have to give: ', (character) => {
+    console.log(`${character}, learn your future, you have decided. In the ${time()} period, ${verb()} you will, and ${destiny()} that will be.`);
+    rl.close();
+  });
+}
+
+yourFuture();
