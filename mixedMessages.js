@@ -45,15 +45,18 @@ const destiny = () => {
 }
 
 function yourFuture() {
-  const nameInput = getElemenentById('nameInput').value;
+  const nameInput = document.getElementById('nameInput').value;
   if (nameInput.trim() == '') {
     alert ("Please enter your name");
     return;
   }
-
+  
   const resultDiv = document.getElementById('resultDiv');
   const future = `${nameInput}, learn your future, you have decided. In the ${time()} period, ${verb()} you will, and ${destiny()} that will be.`;
   resultDiv.textContent = future;
+  resultDiv.style.display = 'block';
+  document.getElementsByTagName('button')[0].innerHTML = 'Another fortune';
+  document.getElementsByTagName('button')[0].onclick = function() {
+    location.reload();
+  }
 }
-
-yourFuture();
