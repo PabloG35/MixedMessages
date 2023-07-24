@@ -1,4 +1,3 @@
-const readline = require('readline');
 const consequences = {
     goodConsequences: [
         "energized", "accomplished", "refreshed", "knowledgeable", "creative", "harmonious",
@@ -46,15 +45,15 @@ const destiny = () => {
 }
 
 function yourFuture() {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+  const nameInput = getElemenentById('nameInput').value;
+  if (nameInput.trim() == '') {
+    alert ("Please enter your name");
+    return;
+  }
 
-  rl.question('The name of whom you desire to know the future of, to me your name you have to give: ', (character) => {
-    console.log(`${character}, learn your future, you have decided. In the ${time()} period, ${verb()} you will, and ${destiny()} that will be.`);
-    rl.close();
-  });
+  const resultDiv = document.getElementById('resultDiv');
+  const future = `${nameInput}, learn your future, you have decided. In the ${time()} period, ${verb()} you will, and ${destiny()} that will be.`;
+  resultDiv.textContent = future;
 }
 
 yourFuture();
